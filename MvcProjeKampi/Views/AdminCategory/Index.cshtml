@@ -20,12 +20,12 @@
                 <td>@item.CategoryID</td>
                 <td>@item.CategoryName</td>
                 <td>@item.CategoryDescription</td>              
-                <td><a href="#" class="btn btn-success">Sil</a></td>
+                <td><a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-success">Sil</a></td>
                 <td><a href="#" class="btn btn-warning">Güncelle</a></td>
                 <td><a href="#" class="btn btn-primary">Başlıklar</a></td>
             </tr>
         }
     </table>
-    <a href="/Category/AddCategory" class="btn btn-success">Yeni Kategori</a>
+    <a href="/AdminCategory/AddCategory" class="btn btn-success">Yeni Kategori</a>
 </div>
 
