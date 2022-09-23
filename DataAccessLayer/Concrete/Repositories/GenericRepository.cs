@@ -38,7 +38,7 @@ namespace DataAccessLayer.Concrete.Repositories
         }
 
         public List<T> List()
-        {
+        {            
             return _object.ToList();
         }
 
