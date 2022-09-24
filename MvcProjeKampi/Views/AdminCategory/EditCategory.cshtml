@@ -13,9 +13,10 @@
         Hoşgeldiniz
     </h1><br />
 
-    @using (Html.BeginForm("EditCategory", "AdminCategory", FormMethod.Post))
+    @using (Html.BeginForm("EditCategoryPost", "AdminCategory", FormMethod.Post))
     {
         <div class="form-group">
+            @Html.HiddenFor(x => x.CategoryID)
             @Html.Label("Kategori Adı")
             @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.CategoryName)
