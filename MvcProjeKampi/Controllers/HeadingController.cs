@@ -73,12 +73,28 @@ namespace MvcProjeKampi.Controllers
         [HttpGet]
         public ActionResult EditHeading(int id)
         {
+            List<SelectListItem> valuecategory = (
+              from x in cm.GetList()
+              select new SelectListItem
+              {
+                  Text = x.CategoryName,
+                  Value = x.CategoryID.ToString()
+              }).ToList();
+            List<SelectListItem> valuewriter = (
+                from x in wm.GetList()
+                select new SelectListItem
+                {
+                    Text = x.WriterName + " " + x.WriterSurName,
+                    Value = x.WriterID.ToString()
+                }
+                ).ToList();
+            ViewBag.vlc = valuecategory;
             var headingvalue = hm.GetByID(id);
             return View(headingvalue);
         }
 
         [HttpPost]
-        public ActionResult EdiHeading(Heading p)
+        public ActionResult EditHeading(Heading p)
         {
 
             ValidationResult results = headingValidator.Validate(p);
@@ -97,6 +113,13 @@ namespace MvcProjeKampi.Controllers
             }
             return View();
 
+        }
+
+        public ActionResult DeleteHeading (int id)
+        {
+            var HeadingValue = hm.GetByID(id);
+            hm.HeadingDelete(HeadingValue);
+            return RedirectToAction("index");
         }
 
        
