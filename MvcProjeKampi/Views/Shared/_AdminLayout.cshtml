@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
-    <link href="~/Content/Site.css" rel="stylesheet" />  
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -57,7 +58,9 @@ to get the desired effect
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
+                        @if (User.IsInRole("B"))
+                        {
                         <li class="nav-item has-treeview menu-open">
                             <a href="/admincategory/index" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -66,6 +69,8 @@ to get the desired effect
                                 </p>
                             </a>
                         </li>
+                        }
+
                         <li class="nav-item">
                             <a href="/heading/index" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -144,7 +149,7 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/gallery.html" class="nav-link">
+                            <a href="/gallery/index" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Galeri
@@ -155,7 +160,7 @@ to get the desired effect
                             <a href="/errorpage/page404" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
-                                    Hata Sayfaları                                  
+                                    Hata Sayfaları
                                 </p>
                             </a>
                         </li>
@@ -196,8 +201,7 @@ to get the desired effect
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
