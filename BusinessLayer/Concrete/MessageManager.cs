@@ -34,6 +34,11 @@ namespace BusinessLayer.Concrete
             return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
         }
 
+        public List<Message> GetUnReadMessageForInbox(string p)
+        {
+            return _messageDal.List(x =>  x.MessageRead == false );
+        }
+
         public void MessageAdd(Message message)
         {
             _messageDal.Insert(message);

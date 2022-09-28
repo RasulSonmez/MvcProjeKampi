@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Inbox";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+  
+    string date = DateTime.Now.ToShortDateString();
+    string year = DateTime.Now.Year.ToString();
+    int i = 0;
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -69,23 +73,41 @@
                                 {
 
 
-                                    <tr>
-                                        <td>
-                                            <div class="icheck-primary">
-                                                <input type="checkbox" value="" id="check1">
-                                                <label for="check1"></label>
-                                            </div>
-                                        </td>
-                                        <td class="mailbox-star"><a href="/Message/GetInboxDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
-                                        <td class="mailbox-name"><a href="/Message/GetInboxDetails/@item.MessageID">@item.SenderMail</a></td>
-                                        <td class="mailbox-subject">
-                                            <b>@item.Subject</b> - @item.MessageContent.Substring(0,5) ...
-                                        </td>
-                                        <td class="mailbox-attachment"></td>
-                                        <td class="mailbox-date">
-                                            @(((DateTime)item.MessageDate).ToString("dd-MM-yyy"))
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        <div class="icheck-primary">
+                                            <input type="checkbox" value="" id="check1">
+                                            <label for="check1"></label>
+                                        </div>
+                                    </td>
+                                    <td class="mailbox-star"><a href="/Message/GetInboxDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
+                                    <td class="mailbox-name"><a href="/Message/GetInboxDetails/@item.MessageID">@item.SenderMail</a></td>
+                                    <td class="mailbox-subject">
+                                        <b>@item.Subject</b> -  
+                                        @if (item.MessageContent.Length < 75)
+                                        {
+                                            @item.MessageContent
+                                        }
+                                        else
+                                        {
+                                            @item.MessageContent.Substring(0, 75)
+                                        }
+                                    </td>
+                                    @if (item.MessageRead == false)
+                                    {
+
+
+                                        <td><i style="color:red" class="fas fa-fire"></i></td>
+                                    }
+                                    else
+                                    {
+                                        <td><i class="fas fa-fire"></i></td>
+                                    }
+                                    <td class="mailbox-attachment"></td>
+                                    <td class="mailbox-date">
+                                        @item.MessageDate.ToString("dd-MMM-yyyy")
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

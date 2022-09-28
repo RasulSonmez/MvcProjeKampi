@@ -13,13 +13,13 @@ namespace MvcProjeKampi.Controllers
 {
     public class MessageController : Controller
     {
-       MessageManager mm = new MessageManager(new EfMessageDal());
+        MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
         // GET: Message
-        [Authorize]
+
         public ActionResult Inbox()
         {
-            var messagelist = mm.GetListInbox();          
+            var messagelist = mm.GetListInbox();
             return View(messagelist);
         }
 
@@ -69,7 +69,8 @@ namespace MvcProjeKampi.Controllers
             }
             return View();
 
-            return View();
+            
         }
+
     }
 }
