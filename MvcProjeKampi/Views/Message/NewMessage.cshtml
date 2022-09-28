@@ -51,14 +51,17 @@
                             <div class="card-body">
                                 @Html.HiddenFor(x => x.SenderMail, new { @Value = "admin@gmail.com" })
                                 <div class="form-group">
+                                    @Html.Label("Alıcı Mail Adresi")
                                     @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(x => x.ReceiverMail, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
+                                    @Html.Label("Konu")
                                     @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(x => x.Subject, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
+                                    @Html.Label("Mesaj İçeriği")
                                     <textarea id="compose-textarea" name="MessageContent" class="form-control" style="height: 300px;"></textarea>
                                     @Html.ValidationMessageFor(x => x.MessageContent, "", new { @class = "text-danger" })
                                 </div>

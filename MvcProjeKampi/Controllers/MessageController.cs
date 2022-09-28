@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +13,34 @@ namespace MvcProjeKampi.Controllers
 {
     public class MessageController : Controller
     {
-       MessageManager cm = new MessageManager(new EfMessageDal());
+       MessageManager mm = new MessageManager(new EfMessageDal());
+        MessageValidator messageValidator = new MessageValidator();
         // GET: Message
         public ActionResult Inbox()
         {
-            var messagelist = cm.GetListInbox();          
+            var messagelist = mm.GetListInbox();          
             return View(messagelist);
         }
 
         public ActionResult SendBox()
         {
-            var messagelist = cm.GetListSendbox();
+            var messagelist = mm.GetListSendbox();
             return View(messagelist);
         }
+
+
+        public ActionResult GetInboxDetails(int id)
+        {
+            var values = mm.GetByID(id);
+            return View(values);
+        }
+
+        public ActionResult GetSendboxDetails(int id)
+        {
+            var values = mm.GetByID(id);
+            return View(values);
+        }
+
         [HttpGet]
         public ActionResult NewMessage()
         {
@@ -34,6 +51,22 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message p)
         {
+            ValidationResult results = messageValidator.Validate(p);
+
+            if (results.IsValid)
+            {
+                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                mm.MessageAdd(p);
+                return RedirectToAction("SendBox");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
 
             return View();
         }
