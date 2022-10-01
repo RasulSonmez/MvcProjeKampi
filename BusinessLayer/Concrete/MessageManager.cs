@@ -25,13 +25,13 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListInbox()
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com");
+            return _messageDal.List(x => x.ReceiverMail == "gizemyildiz@outlook.com");
         }
               
 
         public List<Message> GetListSendbox()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
+            return _messageDal.List(x => x.SenderMail == "gizemyildiz@outlook.com");
         }
 
         public List<Message> GetUnReadMessageForInbox(string p)

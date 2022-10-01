@@ -11,6 +11,7 @@ namespace BusinessLayer.Absract
     {
 
         List<Content> GetList();
+        List<Content> GetListByWriter();
         List<Content> GetListByHeadingID(int id);
         void ContentAdd(Content content);
         Content GetByID(int id);

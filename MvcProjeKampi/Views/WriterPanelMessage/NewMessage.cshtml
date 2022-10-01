@@ -1,8 +1,10 @@
 ﻿@model EntityLayer.Concrete.Message
 @{
     ViewBag.Title = "NewMessage";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
+
+
 
 
     <!-- Content Header (Page header) -->
@@ -19,18 +21,17 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                @Html.Action("MessageListMenu", "Contact")
+                @Html.Action("MessageListMenu", "WriterPanelMessage")
                 <!-- /.col -->
                 <div class="col-md-9">
-                    @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post))
+                    @using (Html.BeginForm("NewMessage", "WriterPanelMessage", FormMethod.Post))
                     {
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Yeni Mesaj Sayfası</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
-                                @Html.HiddenFor(x => x.SenderMail, new { @Value = "admin@gmail.com" })
+                            <div class="card-body">                             
                                 <div class="form-group">
                                     @Html.Label("Alıcı Mail Adresi")
                                     @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control" })
@@ -72,15 +73,5 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-    <!-- /.content-wrapper -->
-    <!-- Control Sidebar -->
-    <!-- /.control-sidebar -->
-    <!-- ./wrapper -->
 
 
-    <script>
-    $(function () {
-            //Add text editor
-            $('#compose-textarea').summernote()
-        })</script>
