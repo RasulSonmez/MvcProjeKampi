@@ -11,13 +11,13 @@
     {
     <div class="form-group">
        <input type="hidden" name="HeadingID" value="@ViewBag.d"/>
-        @Html.Label("Başlık Adı")
+        @Html.Label("İçeriğinizi Yazın")
         @Html.TextAreaFor(x => x.ContentValue, 10, 30, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.ContentValue)
         <br />
 
         <br />
-        <button class="btn btn-info">Başlık Ekle</button>
+        <button class="btn btn-info">Kaydet</button>
     </div>
     }
 
