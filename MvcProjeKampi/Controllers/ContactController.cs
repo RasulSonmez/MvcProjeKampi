@@ -31,8 +31,8 @@ namespace MvcProjeKampi.Controllers
         {
             string p = (string)Session["WriterMail"];
             ViewBag.contactcount = cm.GetList().Count();
-            ViewBag.inboxcount = mm.GetListInbox().Count();
-            ViewBag.sendboxcount = mm.GetListSendbox().Count();          
+          //  ViewBag.inboxcount = mm.GetListInbox().Count();
+            //ViewBag.sendboxcount = mm.GetListSendbox().Count();          
             return PartialView();
         }
     }
